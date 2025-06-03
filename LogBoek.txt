@@ -1,0 +1,27 @@
+Update 1:
+
+Ik heb de basis functionaliteiten van de site gemaakt en een aantal functies toegevoegd om de volgende update simpler te maken
+
+Update 2:
+
+Ik ben begonnen met de andere sites hun html files aan te maken en de layout van de index file toe te voegen aan hen.
+
+Update 3:
+
+Nieuwe functies maken en tebellen of boxes etc teovoegen is veel te moeilijk geworden wegens slecht geschreven code dus ik zal het volledig herstarten en motivatie gebruiken van andere sites op de internet om de uiterlijk een beetje beter te maken
+
+Update 4:
+
+Ik heb de index bijna volledig afgemaakt en ben al klaar met mijn Contact pagina, sinds het heel snel ging ben ik begonnen met het schrijven van code op mijn Over Ons pagina. Consumenten en Business pagina zal ik maken wanneer ik de index af heb zodat ik niet alles door elkaar maak en dingens dan zal vergeten
+
+Update 5:
+
+Ik ben klaar met de Contact, Over Ons, Index:Home paginas en bijna klaar met de Index:Business pagina. Ik zal binnenkort beginnen met het schrijven van code op mijn Consument en Business paginas
+
+Update 6:
+
+Ik ben klaar met de Index paginas, Contact en Over ons paginas en de Consument pagina is bijna af, de Business pagina is 30% klaar en morgen ( 01/06 ) zou ik volledig klaar moeten zijn 
+
+Update 7:
+
+Ik heb net de laatste paginas af gemaakt en heb al alle schoonheidsfoutjes verbeterd zoals spelfouten of indendationfoutjes, de commentaar heb ik ook al af en de ReadMe zou voor de einde van de dag af moeten zijn

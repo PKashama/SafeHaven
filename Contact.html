@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <!-- Algemene styling extern -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap Icons en CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <!-- Unieke interne stijlen voor deze pagina -->
+  <style>
+    /* Alleen unieke stijlen voor het contactformulier en notificatie */
+    .contact-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    body {
+      margin-top: 70px; /* Adjust this value to match your navbar height */
+    }
+    .contact-info-item {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 30%;
+    }
+    .contact-info-icon {
+      font-size: 2rem;
+      color: #2196f3;
+      margin-bottom: 15px;
+    }
+    .contact-form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .input-box {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    .input-box input,
+    .input-box textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      transition: 0.3s ease-in-out;
+    }
+    .input-box textarea {
+      resize: vertical;
+      height: 150px;
+    }
+    .input-box input:focus,
+    .input-box textarea:focus {
+      border-color: #2196f3;
+    }
+    .input-box span {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: #888;
+      transition: 0.3s ease-in-out;
+    }
+    .input-box input:focus ~ span,
+    .input-box textarea:focus ~ span,
+    .input-box input:valid ~ span,
+    .input-box textarea:valid ~ span {
+      top: -10px;
+      font-size: 12px;
+      color: #2196f3;
+    }
+    .input-box input[type="submit"] {
+      background-color: #2196f3;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    .input-box input[type="submit"]:hover {
+      background-color: #1976d2;
+    }
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      z-index: 9999;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    /* Responsive fix voor contact-info */
+    @media (max-width: 900px) {
+      .contact-info {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .contact-info-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html"><span class="safe">SAFE</span><span class="haven">HAVEN</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+            <a class="navbar-brand" href="index.html"><span class="safe">SAFE</span><span class="haven">HAVEN</span></a>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <!-- Navigatie links -->
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a class="nav-link active" href="Consument.html">Consument</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Business.html">Business</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Over Ons.html">Over Ons</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact sectie -->
+  <section>
+    <div class="section-header">
+      <div class="container">
+        <h2>Neem Contact met Ons op</h2>
+        <p>We horen graag van je! Of je nu vragen hebt, feedback wilt geven, of hulp nodig hebt, ons team staat klaar om te helpen. Vul het onderstaande formulier in, en we nemen zo snel mogelijk contact met je op.</p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <!-- Contact Info blokken -->
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="bi bi-house-door-fill"></i>
+            </div>
+            <div class="contact-info-content">
+              <h4>Adres</h4>
+              <p>Avenue Louise 152,<br/> 1050 Brussel, <br/>België</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="bi bi-telephone-fill"></i>
+            </div>
+            <div class="contact-info-content">
+              <h4>Telefoonnummer</h4>
+              <p>+32 405 87 51 33</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <i class="bi bi-envelope-fill"></i>
+            </div>
+            <div class="contact-info-content">
+              <h4>Email</h4>
+              <p>support@safehaven.org</p>
+            </div>
+          </div>
+        </div>
+        <!-- Contactformulier -->
+        <div class="contact-form">
+          <form action="" id="contact-form">
+            <div class="input-box">
+              <input type="text" required name="name">
+              <span>Naam</span>
+            </div>
+            <div class="input-box">
+              <input type="email" required name="email">
+              <span>Email</span>
+            </div>
+            <div class="input-box">
+              <input type="number" required name="number">
+              <span>Gsm-nummer</span>
+            </div>
+            <div class="input-box">
+              <textarea required name="message"></textarea>
+              <span>Schrijf Uw Bericht...</span>
+            </div>
+            <div class="input-box">
+              <input type="submit" value="Send">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer met bedrijfsinfo, navigatie en contact -->
+  <footer class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container text-center text-md-left">
+      <div class="row text-center text-md-left">
+        <!-- Onderneming Info -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">SafeHaven</h5>
+          <p>Digitale veiligheid voor iedereen. Wij beschermen wat voor jou belangrijk is.</p>
+        </div>
+        <!-- Navigation -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">Navigatie</h5>
+          <p><a href="index.html" class="text-white text-decoration-none">Home</a></p>
+          <p><a href="Consument.html" class="text-white text-decoration-none">Consument</a></p>
+          <p><a href="Business.html" class="text-white text-decoration-none">Business</a></p>
+          <p><a href="Contact.html" class="text-white text-decoration-none">Contact</a></p>
+          <p><a href="Over Ons.html" class="text-white text-decoration-none">Over Ons</a></p>
+        </div>
+        <!-- Contact -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
+          <p><i class="bi bi-house-door-fill me-2"></i>Avenue Louise 152, Brussel</p>
+          <p><i class="bi bi-envelope-fill me-2"></i>support@safehaven.org</p>
+          <p><i class="bi bi-telephone-fill me-2"></i>+32 405 87 51 33</p>
+        </div>
+        <!-- Social Media -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">Volg ons</h5>
+          <a href="#" class="text-white me-4"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-white me-4"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-white me-4"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-white me-4"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <hr class="mb-4">
+      <div class="row align-items-center">
+        <div class="col-md-7 col-lg-8">
+          <p class="text-white">© 2025 SafeHaven. Alle rechten voorbehouden.</p>
+        </div>
+        <div class="col-md-5 col-lg-4">
+          <p class="text-white text-md-right">Ontwikkeld door de SafeHaven Team</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Cookie banner HTML -->
+  <div id="cookie-banner" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: #222; color: #fff; padding: 18px 10px; z-index: 9999; text-align: center;">
+    <span>
+      Deze website gebruikt cookies om uw ervaring te verbeteren.
+    </span>
+    <button id="cookie-accept" class="btn btn-primary btn-sm ms-3">Akkoord</button>
+    <button id="cookie-decline" class="btn btn-secondary btn-sm ms-2">Weigeren</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="CookieBanner.js"></script>
+  <!-- Formulier notificatie -->
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();  // Voorkom standaard submit
+      this.reset();
+      // Bevestiging tonen
+      const notification = document.createElement("div");
+      notification.classList.add("notification");
+      notification.textContent = "Je bericht is succesvol verzonden!";
+      document.body.appendChild(notification);
+      // Verwijder bevestiging na 3 seconden
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

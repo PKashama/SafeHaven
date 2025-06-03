@@ -1,0 +1,191 @@
+/* ===================== Algemene basisstijl ===================== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  /* Zorg dat content niet onder de navbar valt */
+  padding-top: 70px;
+}
+
+/* ===================== Header & Footer ===================== */
+.header, .footer {
+  padding: 20px;
+  text-align: center;
+}
+
+/* ===================== Content blok ===================== */
+.content {
+  padding: 40px;
+  text-align: center;
+}
+
+/* ===================== Layouts ===================== */
+body.home-layout {
+  background-color: #e0f7fa;
+  color: #006064;
+}
+body.home-layout .header { background-color: #b2ebf2; }
+body.home-layout .footer { background-color: #4dd0e1; }
+
+body.business-layout {
+  background-color: #3e3538;
+  color: #fff; /* Zorg voor wit als tekstkleur voor contrast */
+}
+body.business-layout .header,
+body.business-layout .footer {
+  background-color: #4a148c;
+  color: #fff;
+}
+
+/* ===================== Branding ===================== */
+.safe{
+  color: rgb(0, 140, 255);
+  font-weight: bold;
+  font-size: 27px;
+}
+.haven{
+  color: #00115a;
+  font-weight: bold;
+  font-size: 27px;
+}
+
+.Business-Haven {
+  color: #270c47;
+  font-weight: bold;
+  font-size: 27px;
+}
+
+.Business-Safe {
+  color: #985ce0;
+  font-weight: bold;
+  font-size: 27px;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 600px) {
+  .safe, .haven, .Business-Safe, .Business-Haven {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer .row > div {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .feature-box-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .carousel-item img {
+    height: 200px;
+    object-fit: cover;
+  }
+}
+/* ===================== Feature box ===================== */
+.feature-box {
+  flex: 1;
+  min-height: 300px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.feature-box i {
+  font-size: 3rem;
+  color: #007bff;
+}
+.feature-box h5 {
+  margin-top: 10px;
+  font-size: 1.25rem;
+}
+.feature-box-container {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.feature-box-container .col-md-2 {
+  flex: 1;
+  max-width: 200px;
+  text-align: center;
+}
+
+/* ===================== Pro box ===================== */
+.pro-box, .pro-boxBusiness, .pro-boxPicture {
+  max-width: 90%;
+  transition: box-shadow 0.3s;
+  border-radius: 10px;
+}
+
+/* Consument Pro box */
+.pro-box {
+  background: linear-gradient(135deg, #FFF5CE, #fceec0);
+  border: 3px solid gold;
+  box-shadow: 0 0 20px rgba(255,215,0,0.5);
+}
+.pro-box:hover {
+  box-shadow: 0 0 35px rgba(255,215,0,0.8);
+}
+
+/* Business Pro box */
+.pro-boxBusiness {
+  color: #4a148c;
+  background: linear-gradient(135deg, #ede7f6, #ccade9);
+  border: 3px solid #cdb2e7;
+  box-shadow: 0 0 20px #eeddff;
+}
+.pro-boxBusiness .btn-primary:hover {
+  background-color: #cdb2e7;
+}
+
+/* Picture Pro box */
+.pro-boxPicture {
+  color: #155377;
+  background: linear-gradient(135deg, #d7edf5, #bce3f1);
+  border: 3px solid #86b8ca;
+  box-shadow: 0 0 20px #dff6ff;
+}
+.pro-boxPicture .btn-primary:hover {
+  background-color: #cdb2e7;
+}
+
+/* ===================== Carousel ===================== */
+.carousel-item img {
+  height: 67vh;
+  object-fit: fill;
+}
+
+/* ===================== Buttons ===================== */
+.buttons button, .btn {
+  font-size: 16px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* ===================== Box ===================== */
+.box {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* ===================== Container ===================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

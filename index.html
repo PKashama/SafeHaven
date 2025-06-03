@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeHaven</title>
+  <!-- Externe algemene styling -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Bootstrap Icons en CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <!-- Interne CSS voor specifieke of overschrijvende stijlen -->
+  <style>
+    /* --- Layout containers en basis --- */
+    /* Algemene basisstijl */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif; /* Of sans-serif, kies één */
+      font-weight: bold;
+    }
+
+    /* Buttons */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* Layout containers */
+    .layout {
+      display: none;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    .active {
+      display: flex;
+    }
+    .header, .footer {
+      padding: 20px;
+      text-align: center;
+    }
+    .content {
+      flex: 1;
+      padding: 40px;
+      text-align: center;
+    }
+
+    /* Home layout */
+    body.home-layout, .home-layout {
+      background-color: #e0f7fa;
+      color: #006064;
+    }
+    .home-layout .header {
+      background-color: #b2ebf2;
+    }
+    .home-layout .footer {
+      background-color: #4dd0e1;
+    }
+
+    /* Zakelijke layout */
+    body.business-layout, .business-layout {
+      background-color: #cdb2e7;
+      color: #4a148c;
+    }
+    .business-layout .header {
+      background-color: #ce93d8;
+    }
+    .business-layout .footer {
+      background-color: #ba68c8;
+    }
+
+    /* Feature box */
+    .feature-box {
+      flex: 1;
+      min-height: 300px;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f8f9fa;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .feature-box i {
+      font-size: 3rem;
+      color: #007bff;
+    }
+    .feature-box h5 {
+      margin-top: 10px;
+      font-size: 1.25rem;
+    }
+    .feature-box-container {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .feature-box-container .col-md-2 {
+      flex: 1;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    /* Fade image */
+    #fadeImage {
+      transition: opacity 0.3s ease-in-out;
+    }
+    .opacity-0 {
+      opacity: 0;
+    }
+
+    /* Pro box */
+    .pro-box {
+      background: linear-gradient(135deg, #FFF5CE, #fceec0);
+      border: 3px solid gold;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      max-width: 90%;
+      transition: box-shadow 0.3s ease;
+    }
+    .pro-box:hover {
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
+    }
+
+    /* Pro box business */
+    .pro-boxBusiness {
+      color: #4a148c;
+      background: linear-gradient(135deg, #ede7f6, #ccade9);
+      border: 3px solid #cdb2e7;
+      box-shadow: 0 0 20px #eeddff;
+      max-width: 90%;
+      transition: box-shadow 0.3s ease;
+    }
+    .pro-boxBusiness .btn-primary:hover {
+      background-color: #cdb2e7;
+    }
+    .pro-boxBusiness .fading-image {
+      mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+    }
+
+    /* Pro box picture*/
+    .pro-boxPicture .btn-primary:hover {
+      background-color: #cdb2e7;
+    }
+    .pro-boxPicture .fading-image {
+      mask-image: linear-gradient(to right, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);
+    }
+  </style>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <!-- Layouts -->
+  <!-------------------- Home Layout -------------------->
+  <div id="home" class="layout home-layout active">
+    <!-- Navbar -->
+    <nav class="navbar fixed-top bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><span class="safe">SAFE</span><span class="haven">HAVEN</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+              <a class="navbar-brand" href="index.html"><span class="safe">SAFE</span><span class="haven">HAVEN</span></a>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a class="nav-link active" href="Consument.html">Consument</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Business.html">Business</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Over Ons.html">Over Ons</a></li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Introductieblok -->
+    <main class="container py-5">
+      <div class="row align-items-center">
+        <div class="container mt-5 pt-5">
+          <div class="row align-items-center">
+            <!-- Logo links -->
+            <div class="col-md-5 text-center mb-4 mb-md-0">
+              <img src="SafeHaven Logo NoBG.png" alt="SafeHaven Logo" class="img-fluid rounded shadow" style="max-height: 300px;">
+            </div>
+            <!-- Welkomsttekst rechts -->
+            <div class="col-md-7">
+              <h1 class="mb-3">🛡️ Welkom bij SafeHaven 🛡️</h1>
+              <h4 class="mb-3">Slimme bescherming voor je digitale leven.</h4>
+              <p>Blijf beschermd tegen virussen, malware en online dreigingen — waar je ook bent. SafeHaven biedt realtime beveiliging, snelle scans en een gebruiksvriendelijk ontwerp zonder vertragingen.</p>
+              <ul class="list-unstyled">
+                <li>✔️ Realtime dreigingsdetectie</li>
+                <li>✔️ Razendsnelle scans</li>
+                <li>✔️ Geen vertragingen of onderbrekingen</li>
+                <li>✔️ Eenvoudige en overzichtelijke gebruikersinterface</li>
+                <li>🔗<a href="Over Ons.html" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-0-hover">Voor meer info...</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Gebruikerskeuze -->
+    <section class="py-5 px-4 bg-light">
+      <div class="container py-5">
+        <div class="box text-center p-4 rounded border">
+          <h3>Wat voor soort gebruiker ben je?</h3>
+          <p>Kies een van de onderstaande opties:</p>
+          <div class="buttons">
+            <button onclick="switchLayout('home')" class="btn btn-primary mx-2">Consument</button>
+            <button onclick="switchLayout('business')" class="btn btn-secondary mx-2">Business</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pro product highlight -->
+    <section class="py-5 px-4 bg-light">
+      <div class="pro-box mx-auto p-4 rounded bg-white shadow-lg">
+        <div class="row g-0 align-items-center">
+          <!-- Carousel links -->
+          <div class="col-md-5 rounded">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="Products/Pro_Icon.png" class="d-block w-100" alt="...">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Productinfo rechts -->
+          
+          <div class="col-md-6 p-5">
+            <h1 class="mb-3">SafeHaven PRO</h1>
+            <h4 class="mb-3">Krachtige beveiliging voor jou en je gezin zonder probleem</h4>
+            <ul class="list-unstyled">
+              <li>⭐ Realtime virusscan</li>
+              <li>⭐ Bescherming voor meerdere apparaten</li>
+              <li>⭐ VPN-toegang</li>
+              <li>⭐ Wachtwoordmanager</li>
+              <li>⭐ Prioriteit bij support</li>
+              <li>🔗<a href="Consument.html" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-0-hover">Extra Functies</a></li>
+              <a class="btn btn-primary w-50" style="margin-left: 0px;padding-top: 10px;" href="Consument.html">Nu kopen</a>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature boxes -->
+    <section class="py-5 px-4 bg-light">
+      <div class="container py-5">
+        <div class="feature-box-container">
+          <!-- Beveiliging -->
+          <div class="col-md-2">
+            <div class="feature-box">
+              <i class="bi bi-shield-lock"></i>
+              <h5>Beveiliging</h5>
+              <p>Real-time detectie van dreigingen en bescherming tegen online bedreigingen.</p>
+            </div>
+          </div>
+          <!-- Snelheid -->
+          <div class="col-md-2">
+            <div class="feature-box">
+              <i class="bi bi-lightning-charge"></i>
+              <h5>Snelheid</h5>
+              <p>Snelle en lichte scans die je geen vertraging of onderbrekingen bezorgen.</p>
+            </div>
+          </div>
+          <!-- Meerdere apparaten -->
+          <div class="col-md-2">
+            <div class="feature-box">
+              <i class="bi bi-phone"></i>
+              <h5>Meerdere apparaten</h5>
+              <p>Bescherming voor al je apparaten.</p>
+            </div>
+          </div>
+          <!-- Cloud Backup -->
+          <div class="col-md-2">
+            <div class="feature-box">
+              <i class="bi bi-cloud"></i>
+              <h5>Cloud Backup</h5>
+              <p>Veilige cloud back-up en gemakkelijke gegevensherstel, altijd en overal toegankelijk.</p>
+            </div>
+          </div>
+          <!-- Klantenservice -->
+          <div class="col-md-2">
+            <div class="feature-box">
+              <i class="bi bi-headset"></i>
+              <h5>Klantenservice</h5>
+              <p>Altijd bereikbare klantenservice, 24/7, wanneer je maar hulp nodig hebt.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product dropdown en info -->
+    <section class="py-5 px-4">
+      <div class="container py-4">
+        <div class="row align-items-center">
+          <!-- Afbeelding links -->
+          <div class="col-md-6 text-center">
+            <img id="fadeImage" src="SafeHaven Logo NoBG.png" class="img-fluid rounded shadow" alt="Slideshow" style="max-height: 300px;">
+          </div>
+          <!-- Productkeuze rechts -->
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="w-100 text-center" style="max-width: 100%;">
+              <select id="productSelect" class="form-select mb-3">
+                <option value="FreeTrial">Gratis Proefversie</option>
+                <option value="Standaard">Standaard</option>
+                <option value="Premium">Premium</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Ultimate">Ultimate</option>
+              </select>
+              <div id="productInfo" class="border rounded p-3 bg-light mb-3">
+                <h4>SafeHaven</h4>
+                <p>SafeHaven biedt bescherming tegen virussen, malware en online dreigingen. Met real-time virusscans en ransomware-bescherming zorgt SafeHaven voor een veilige online ervaring.</p>
+              </div>
+              <a id="extraProductButton" class="btn btn-primary w-100" style="margin-left: 0px;" href="Consument.html">See Features</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B2B highlight -->
+    <section class="py-5 px-4 bg-light">
+      <div class="pro-boxPicture mx-auto my-5 p-4 rounded">
+        <div class="row g-0 align-items-center">
+          <!-- Carousel links -->
+          <div class="col-md-5 rounded">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="33.jpg" class="d-block w-100 fading-image" alt="...">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Info rechts -->
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="w-100 text-center" style="max-width: 85%;">
+              <div id="productInfo" class="border rounded p-3 bg-light mb-3">
+                <h2 class="mb-3">🔗 Affiliate Programma </h2>
+                <p>Word partner van SafeHaven en verdien een commissie voor elke klant die jij aanbrengt. Als affiliate promoot je onze beveiligingsoplossingen via jouw website, sociale media of netwerk. Wanneer iemand via jouw unieke link een aankoop doet, ontvang jij een aantrekkelijke vergoeding.</p>
+              </div>
+              <a id="extraProductButton" class="btn btn-primary w-100" style="margin-left: 0px;" href="Contact.html">Nu aanvragen</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-------------------- Business Layout -------------------->
+  <div id="business" class="layout business-layout">
+    <!-- Navbar -->
+    <nav class="navbar bg-body-tertiary fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><span class="Business-Safe">SAFE</span><span class="Business-Haven">HAVEN</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarBusiness" aria-controls="offcanvasNavbarBusiness">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarBusiness" aria-labelledby="offcanvasNavbarBusinessLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarBusinessLabel">
+              <a class="navbar-brand" href="index.html"><span class="Business-Safe">SAFE</span><span class="Business-Haven">HAVEN</span></a>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item"><a class="nav-link active" href="Consument.html">Consument</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Business.html">Business</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Contact.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link active" href="Over Ons.html">Over Ons</a></li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Introductieblok Business -->
+    <main class="container py-5">
+      <div class="row align-items-center">
+        <div class="container mt-5 pt-5">
+          <div class="row align-items-center">
+            <!-- Logo links -->
+            <div class="col-md-5 text-center mb-4 mb-md-0">
+              <img src="SafeHaven Logo Busines.png" alt="SafeHaven Logo" class="img-fluid rounded shadow" style="max-height: 300px;">
+            </div>
+            <!-- Welkomsttekst rechts -->
+            <div class="col-md-7">
+              <h1 class="mb-3">🛡️ Welkom bij SafeHaven Business 🛡️</h1>
+              <h4 class="mb-3">Geavanceerde cyberbeveiliging voor jouw organisatie.</h4>
+              <p>Bescherm je bedrijf tegen virussen, malware en digitale dreigingen — op elk apparaat, op elke locatie. SafeHaven Business biedt krachtige realtime bescherming, schaalbare oplossingen en minimale impact op systeemprestaties.</p>
+              <ul class="list-unstyled">
+                <li>✔️ Realtime bedreigingsanalyse voor al je apparaten</li>
+                <li>✔️ Centrale beheerconsole voor IT-teams</li>
+                <li>✔️ Snelle, efficiënte scans zonder systeemvertraging</li>
+                <li>✔️ Ondersteuning voor meerdere gebruikers en apparaten</li>
+                <li>🔗<a href="Over Ons.html" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-0-hover">Voor meer info...</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Gebruikerskeuze Business -->
+    <section class="py-5 px-4 bg-light">
+      <div class="container py-5">
+        <div class="box text-center p-4 rounded border">
+          <h3>Wat voor soort gebruiker ben je?</h3>
+          <p>Kies een van de onderstaande opties:</p>
+          <div class="buttons">
+            <button style="background-color: rgb(102, 102, 102);border-color: rgb(102, 102, 102);" onclick="switchLayout('home')" class="btn btn-primary mx-2">Consument</button>
+            <button style="background-color: #c2a0e2;border-color: #c2a0e2;" onclick="switchLayout('business')" class="btn btn-secondary mx-2">Business</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Pro product highlight -->
+    <section class="py-5 px-4 bg-light">
+    <div class="pro-boxBusiness mx-auto p-4 rounded bg-white shadow-lg">
+      <div class="row g-0 align-items-center">
+        <!-- Carousel links -->
+        <div class="col-md-5 rounded overflow-hidden">
+          <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="22.jpg" class="d-block w-100 fading-image" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Productinfo rechts -->
+        <div class="col-md-6 p-5">
+          <h1 class="mb-3">SafeHaven Partnership</h1>
+          <h4 class="mb-3">Strategische beveiliging voor groeiende ondernemingen.</h4>
+          <ul class="list-unstyled">
+            <li>⭐ Geavanceerde realtime beveiliging voor netwerken en endpoints</li>
+            <li>⭐ Partner- en resellerprogramma’s met aantrekkelijke marges</li>
+            <li>⭐ Beheer op afstand via een centrale cloudconsole</li>
+            <li>⭐ Prioritaire ondersteuning en accountbeheer</li>
+            <li>🔗<a href="Contact.html" class="link-primary link-offset-2 link-underline-opacity-0 link-underline-opacity-0-hover">Extra Functies</a></li>
+            <a class="btn btn-primary w-50" style="margin-left: 0px;padding-top: 10px;" href="Contact.html">Nu aanvragen</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </section>
+
+    <!-- Feature boxes Business -->
+    <section class="py-5 px-4 bg-light">
+      <div class="feature-box-container">
+        <!-- Bedrijfsbeveiliging -->
+        <div class="col-md-2">
+          <div class="feature-box">
+            <i class="bi bi-shield-check"></i>
+            <h5>Bedrijfsbeveiliging</h5>
+            <p>Geavanceerde bescherming tegen virussen, malware en ransomware voor al je systemen.</p>
+          </div>
+        </div>
+        <!-- Centrale controle -->
+        <div class="col-md-2">
+          <div class="feature-box">
+            <i class="bi bi-diagram-3"></i>
+            <h5>Beheer op afstand</h5>
+            <p>Beheer al je apparaten via één centrale cloudconsole met realtime updates.</p>
+          </div>
+        </div>
+        <!-- Samenwerking / Teambeheer -->
+        <div class="col-md-2">
+          <div class="feature-box">
+            <i class="bi bi-people"></i>
+            <h5>Team & Rollenbeheer</h5>
+            <p>Ondersteuning voor meerdere gebruikers, rollen en toegangsbeheer op maat.</p>
+          </div>
+        </div>
+        <!-- Data & Compliance -->
+        <div class="col-md-2">
+          <div class="feature-box">
+            <i class="bi bi-lock"></i>
+            <h5>Data & Compliance</h5>
+            <p>End-to-end encryptie.</p>
+          </div>
+        </div>
+        <!-- Partner Support -->
+        <div class="col-md-2">
+          <div class="feature-box">
+            <i class="bi bi-headset"></i>
+            <h5>Zakelijke Support</h5>
+            <p>24/7 ondersteuning met accountbeheer en directe hulp bij incidenten.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B2B highlight Business -->
+    <section class="py-5 px-4 bg-light">
+      <div class="pro-boxBusiness mx-auto my-5 p-4 rounded">
+        <div class="row g-0 align-items-center">
+          <!-- Carousel links -->
+          <div class="col-md-5 rounded">
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="33.jpg" class="d-block w-100 fading-image" alt="...">
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Info rechts -->
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="w-100 text-center" style="max-width: 85%;">
+              <div id="productInfo" class="border rounded p-3 bg-light mb-3">
+                <h2 class="mb-3">SafeHaven B2B</h2>
+                <p>Krachtige en betrouwbare antivirusoplossing voor bedrijven. Bescherm je organisatie 24/7 tegen cyberdreigingen met geavanceerde detectie, realtime bescherming en centraal beheer voor uw professionele IT-omgevingen.</p>
+              </div>
+              <a id="extraProductButton" class="btn btn-primary w-100" style="margin-left: 0px;" href="Business.html">Bekijk product</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- Footer -->
+  <footer class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container text-center text-md-left">
+      <div class="row text-center text-md-left">
+        
+        <!-- Onderneming Info -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">SafeHaven</h5>
+          <p>Digitale veiligheid voor iedereen. Wij beschermen wat voor jou belangrijk is.</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">Navigatie</h5>
+          <p><a href="index.html" class="text-white text-decoration-none">Home</a></p>
+          <p><a href="Consument.html" class="text-white text-decoration-none">Consument</a></p>
+          <p><a href="Business.html" class="text-white text-decoration-none">Business</a></p>
+          <p><a href="Contact.html" class="text-white text-decoration-none">Contact</a></p>
+          <p><a href="Over Ons.html" class="text-white text-decoration-none">Over Ons</a></p>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
+          <p><i class="bi bi-house-door-fill me-2"></i>Avenue Louise 152, Brussel</p>
+          <p><i class="bi bi-envelope-fill me-2"></i>support@safehaven.org</p>
+          <p><i class="bi bi-telephone-fill me-2"></i>+32 405 87 51 33</p>
+        </div>
+
+        <!-- Social Media -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
+          <h5 class="text-uppercase mb-4 font-weight-bold">Volg ons</h5>
+          <a href="#" class="text-white me-4"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-white me-4"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-white me-4"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-white me-4"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+      <hr class="mb-4">
+
+      <div class="row align-items-center">
+        <div class="col-md-7 col-lg-8">
+          <p class="text-white">© 2025 SafeHaven. Alle rechten voorbehouden.</p>
+        </div>
+        <div class="col-md-5 col-lg-4">
+          <p class="text-white text-md-right">Ontwikkeld door de SafeHaven Team</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie banner HTML -->
+  <div id="cookie-banner" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: #222; color: #fff; padding: 18px 10px; z-index: 9999; text-align: center;">
+    <span>
+      Deze website gebruikt cookies om uw ervaring te verbeteren.
+    </span>
+    <button id="cookie-accept" class="btn btn-primary btn-sm ms-3">Akkoord</button>
+    <button id="cookie-decline" class="btn btn-secondary btn-sm ms-2">Weigeren</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="CookieBanner.js"></script>
+  <script>
+    // Wissel tussen consument en business layout
+    function switchLayout(type) {
+      const home = document.getElementById('home');
+      const business = document.getElementById('business');
+      if (type === 'home') {
+        home.classList.add('active');
+        business.classList.remove('active');
+      } else if (type === 'business') {
+        business.classList.add('active');
+        home.classList.remove('active');
+      }
+    }
+
+    // Product info data
+    const productData = {
+      FreeTrial: {
+        title: "Gratis Proefversie",
+        description: "Probeer SafeHaven gratis uit met basisbescherming voor één apparaat. Inclusief realtime virusscan, maximaal 1,5 uur gebruik per dag, tot 7 dagen lang. Perfect om onze software te verkennen.",
+        image: "Free_icon.png",
+        button: "Bekijk gratis proefversie "
+      },
+      Standaard: {
+        title: "Standaard",
+        description: "Essentiële bescherming voor dagelijks gebruik. Beveilig tot 3 apparaten met realtime virusscans en zorg voor een veilige digitale omgeving zonder vertraging.",
+        image: "Standaard_icon.png",
+        button: "Bekijk Standaard"
+      },
+      Premium: {
+        title: "Premium",
+        description: "Uitgebreide beveiliging voor meerdere apparaten. Inclusief firewall, bescherming tegen ransomware en ondersteuning op verschillende platforms — ideaal voor gezinnen of intensief gebruik.",
+        image: "Premium_icon.png",
+        button: "Bekijk Premium"
+      },
+      Advanced: {
+        title: "Advanced",
+        description: "Geavanceerde bescherming voor gezinnen en kleine teams. Inclusief real-time scans, firewall, ransomwarebescherming en ondersteuning voor 15 apparaten — krachtig én flexibel.",
+        image: "Advanced_icon.png",
+        button: "Bekijk Advanced"
+      },
+      Ultimate: {
+        title: "Ultimate",
+        description: "Complete beveiligingsoplossing voor het hele huishouden. Beschermt een onbeperkt aantal apparaten met krachtige functies zoals firewall, ransomware-bescherming en malwareblokkering — overal en altijd veilig.",
+        image: "Ultimate_icon.png",
+        button: "Bekijk Ultimate"
+      },
+    };
+
+    // Elementen ophalen
+    const select = document.getElementById('productSelect');
+    const infoBox = document.getElementById('productInfo');
+    const extraButton = document.getElementById("extraProductButton");
+    const image = document.getElementById('fadeImage');
+
+    // Wissel product info bij dropdown
+    select.addEventListener('change', () => {
+      const selected = select.value;
+      const data = productData[selected];
+      infoBox.querySelector('h4').textContent = data.title;
+      infoBox.querySelector('p').textContent = data.description;
+      image.classList.add('opacity-0');
+      setTimeout(() => {
+        image.src = data.image;
+        image.classList.remove('opacity-0');
+      }, 200);
+    });
+  </script>
+</body>
+</html>

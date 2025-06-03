@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeHaven Vergelijking</title>
+  <!-- Externe algemene styling -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Bootstrap CSS en Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Unieke interne stijlen voor deze pagina -->
+  <style>
+    /* Alleen unieke stijlen voor de vergelijkingstabel en shimmer effect */
+
+    .modern-table {
+      background-color: white;
+      border-collapse: separate;
+      border-spacing: 0;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      font-size: 1rem;
+      overflow: hidden;
+    }
+    .modern-table thead {
+      background: linear-gradient(90deg, #f0f4f8, #e2e8f0);
+      color: #111827;
+      font-weight: 600;
+    }
+    .modern-table th, .modern-table td {
+      padding: 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      text-align: center;
+      border: none !important;
+    }
+    .modern-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      background-color: #f9fafb;
+    }
+    .modern-table tbody tr:hover {
+      background-color: #f1f5f9;
+      transition: background 0.2s ease-in-out;
+    }
+    .modern-table th:first-child {
+      border-top-left-radius: 12px;
+    }
+    .modern-table th:last-child {
+      border-top-right-radius: 12px;
+    }
+    .modern-table tr:last-child td:first-child {
+      border-bottom-left-radius: 12px;
+    }
+    .modern-table tr:last-child td:last-child {
+      border-bottom-right-radius: 12px;
+    }
+
+    /* Gouden highlight voor pro-exclusieve rijen */
+    .pro-exclusive-row {
+      background-color: #ffd700 !important;
+      color: #000;
+      font-weight: bold;
+      position: relative;
+      box-shadow: 0 0 25px rgb(255, 238, 143);
+      border-left: 3px solid rgb(199, 174, 33);
+      border-right: 3px solid gold;
+      animation: shimmer 4s infinite linear;
+      z-index: 1;
+    }
+    .pro-exclusive-row td {
+      background-color: #ffd700 !important;
+      border: 1px solid #f1f5f9;
+      border-radius: 0 !important;
+      background: inherit;
+    }
+    .pro-exclusive-row td:first-child {
+      background-color: #ffd700 !important;
+    }
+    .pro-exclusive-row:hover,
+    .modern-table .pro-exclusive-row:hover {
+      background-color: #ffd700 !important;
+      box-shadow: inset 0 0 12px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.6);
+    }
+
+    /* Shimmer effect voor premium kolom */
+    .premium-column::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
+      transform: skewX(-20deg);
+      animation: shimmer-move 4s infinite;
+      z-index: 2;
+    }
+    @keyframes shimmer-move {
+      0% { left: -100%; }
+      100% { left: 360%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="home" class="layout home-layout active">
+    <!-- Navbar -->
+    <nav class="navbar fixed-top bg-body-tertiary shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><span class="safe">SAFE</span><span class="haven">HAVEN</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title"><a class="navbar-brand" href="index.html"><span class="safe">SAFE</span><span class="haven">HAVEN</span></a></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item"><a class="nav-link active" href="Consument.html">Consument</a></li>
+              <li class="nav-item"><a class="nav-link active" href="Business.html">Business</a></li>
+              <li class="nav-item"><a class="nav-link active" href="Contact.html">Contact</a></li>
+              <li class="nav-item"><a class="nav-link active" href="Over Ons.html">Over Ons</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Productvergelijkingstabel -->
+    <main class="container">
+      <section class="my-5 pb-0">
+        <h2 class="text-center mb-4 fw-bold display-5">Vergelijk Onze Producten</h2>
+        <div class="table-responsive">
+          <table class="table modern-table align-middle">
+            <thead>
+              <tr>
+                <th>Functies</th>
+                <th>Gratis (7 dagen)<br><span class="badge text-white" style="background: linear-gradient(90deg, #b1b7b8, #7c8181);">max 1,5u/dag</span></th>
+                <th>Standaard</th>
+                <th>Premium<br><span class="badge text-white" style="background: linear-gradient(90deg, #06b6d4, #3b82f6);">Aanbevolen</span></th>
+                <th>Advanced</th>
+                <th>Ultimate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Realtime virusscan</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+              <tr><td>Aantal apparaten</td><td>1</td><td>4</td><td>7</td><td>13</td><td>18</td></tr>
+              <tr><td>Firewall</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+              <tr><td>Ransomware bescherming</td><td>—</td><td>—</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+              <tr><td>Cross-platform</td><td>—</td><td>—</td><td>✔️</td><td>✔️</td><td>✔️</td></tr>
+              <tr><td>Malware Blocking</td><td>—</td><td>—</td><td>—</td><td>—</td><td>✔️</td></tr>
+              <!-- Pro-exclusieve rijen met gouden highlight -->
+              <tr class="pro-exclusive-row">
+                <td class="premium-column">VPN</td>
+                <td>—</td>
+                <td>5GB/week</td>
+                <td>10GB/Week</td>
+                <td>15GB/Week</td>
+                <td>25GB/Week</td>
+              </tr>
+              <tr class="pro-exclusive-row">
+                <td class="premium-column">Wachtwoordmanager</td>
+                <td>—</td>
+                <td>10</td>
+                <td>20</td>
+                <td>20</td>
+                <td>30</td>
+              </tr>
+              <tr class="pro-exclusive-row">
+                <td class="premium-column">Support prioriteit</td>
+                <td>—</td>
+                <td>⭐</td>
+                <td>⭐</td>
+                <td>⭐</td>
+                <td>⭐</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Carousel met productpakketten -->
+    <section class="py-5 px-4 bg-light">
+      <div class="pro-boxPicture mx-auto p-4 rounded bg-white shadow-lg">
+        <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <!-- Pro -->
+            <div class="carousel-item active">
+              <div class="row g-0 align-items-center">
+                <div class="col-md-5 rounded overflow-hidden">
+                  <img src="AAAAA.jpg" class="d-block w-100" alt="Pro">
+                </div>
+                <div class="col-md-6 p-5">
+                  <h1 class="mb-3">SecureHaven PRO</h1>
+                  <h4 class="mb-3">Premium cyberbescherming voor wie maximale controle en prestaties wil.</h4>
+                  <ul class="list-unstyled">
+                    <li>⭐ Realtime virusscan</li>
+                    <li>⭐ Tot 3 apparaten</li>
+                    <li>⭐ VPN (5GB/maand)</li>
+                    <li>⭐ Wachtwoordmanager (max 10)</li>
+                    <li>⭐ Support met prioriteit</li>
+                    <li>💶 <strong>€6,99/maand</strong></li>
+                    <li>🔗 <a href="#" class="link-primary">Bekijk alle functies</a></li>
+                  </ul>
+                  <a class="btn btn-primary mt-3" href="Contact.html">Meer info</a>
+                </div>
+              </div>
+            </div>
+            <!-- Standaard -->
+            <div class="carousel-item">
+              <div class="row g-0 align-items-center">
+                <div class="col-md-5 rounded overflow-hidden">
+                  <img src="AAAA.jpg" class="d-block w-100" alt="Standaard">
+                </div>
+                <div class="col-md-6 p-5">
+                  <h1 class="mb-3">Standaard</h1>
+                  <h4 class="mb-3">Essentiële bescherming voor dagelijks gebruik.</h4>
+                  <ul class="list-unstyled">
+                    <li>⭐ Realtime virusscan</li>
+                    <li>⭐ Tot 3 apparaten</li>
+                    <li>⭐ *VPN (5GB/maand)</li>
+                    <li>⭐ *Wachtwoordmanager (max 10)</li>
+                    <li>⭐ *Support prioriteit</li>
+                    <li>💶 <strong>€32,00/jaar</strong></li>
+                    <li>🔗 <a href="#" class="link-primary">Bekijk alle functies</a></li>
+                  </ul>
+                  <a class="btn btn-primary mt-3" href="Contact.html">Meer info</a>
+                </div>
+              </div>
+            </div>
+            <!-- Premium -->
+            <div class="carousel-item">
+              <div class="row g-0 align-items-center">
+                <div class="col-md-5 rounded overflow-hidden">
+                  <img src="AAAAAAA.jpg" class="d-block w-100" alt="Premium">
+                </div>
+                <div class="col-md-6 p-5">
+                  <h1 class="mb-3">Premium</h1>
+                  <h4 class="mb-3">Uitgebreide bescherming voor gezinnen en intensief gebruik.</h4>
+                  <ul class="list-unstyled">
+                    <li>⭐ Realtime virusscan</li>
+                    <li>⭐ Tot 7 apparaten</li>
+                    <li>⭐ Firewall & ransomwarebescherming</li>
+                    <li>⭐ Cross-platform ondersteuning</li>
+                    <li>⭐ *VPN (10GB/maand)</li>
+                    <li>⭐ *Wachtwoordmanager (max 20)</li>
+                    <li>⭐ *Support prioriteit</li>
+                    <li>💶 <strong>€59,99/jaar</strong></li>
+                    <li>🔗 <a href="#" class="link-primary">Bekijk alle functies</a></li>
+                  </ul>
+                  <a class="btn btn-primary mt-3" href="Contact.html">Meer info</a>
+                </div>
+              </div>
+            </div>
+            <!-- Advanced -->
+            <div class="carousel-item">
+              <div class="row g-0 align-items-center">
+                <div class="col-md-5 rounded overflow-hidden">
+                  <img src="AAAAAA.jpg" class="d-block w-100" alt="Advanced">
+                </div>
+                <div class="col-md-6 p-5">
+                  <h1 class="mb-3">Advanced</h1>
+                  <h4 class="mb-3">Krachtige bescherming voor gezinnen en kleine teams.</h4>
+                  <ul class="list-unstyled">
+                    <li>⭐ Realtime virusscan</li>
+                    <li>⭐ Tot 13 apparaten</li>
+                    <li>⭐ Firewall & ransomwarebescherming</li>
+                    <li>⭐ *VPN (15GB/maand)</li>
+                    <li>⭐ *Wachtwoordmanager (max 20)</li>
+                    <li>⭐ *Support prioriteit</li>
+                    <li>💶 <strong>€84,99/jaar</strong></li>
+                    <li>🔗 <a href="#" class="link-primary">Bekijk alle functies</a></li>
+                  </ul>
+                  <a class="btn btn-primary mt-3" href="Contact.html">Meer info</a>
+                </div>
+              </div>
+            </div>
+            <!-- Ultimate -->
+            <div class="carousel-item">
+              <div class="row g-0 align-items-center">
+                <div class="col-md-5 rounded overflow-hidden">
+                  <img src="AAAAAAA.jpg" class="d-block w-100" alt="Ultimate">
+                </div>
+                <div class="col-md-6 p-5">
+                  <h1 class="mb-3">Ultimate</h1>
+                  <h4 class="mb-3">De alles-in-één beveiligingsoplossing voor ultieme gemoedsrust.</h4>
+                  <ul class="list-unstyled">
+                    <li>⭐ Realtime virusscan</li>
+                    <li>⭐ Onbeperkt aantal apparaten</li>
+                    <li>⭐ Firewall, ransomware- & malwarebescherming</li>
+                    <li>⭐ *VPN (onbeperkt)</li>
+                    <li>⭐ *Wachtwoordmanager (max 30)</li>
+                    <li>⭐ *Support prioriteit</li>
+                    <li>💶 <strong>€115,00/jaar</strong></li>
+                    <li>🔗 <a href="#" class="link-primary">Bekijk alle functies</a></li>
+                  </ul>
+                  <a class="btn btn-primary mt-3" href="Contact.html">Meer info</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Carousel Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="false"></span>
+            <span class="visually-hidden">Vorige</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="false"></span>
+            <span class="visually-hidden">Volgende</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer met bedrijfsinfo, navigatie en contact -->
+    <footer class="footer bg-dark text-white pt-5 pb-4">
+      <div class="container text-center text-md-left">
+        <div class="row text-center text-md-left">
+          <!-- Onderneming Info -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">SafeHaven</h5>
+            <p>Digitale veiligheid voor iedereen. Wij beschermen wat voor jou belangrijk is.</p>
+          </div>
+          <!-- Navigation -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">Navigatie</h5>
+            <p><a href="index.html" class="text-white text-decoration-none">Home</a></p>
+            <p><a href="Consument.html" class="text-white text-decoration-none">Consument</a></p>
+            <p><a href="Business.html" class="text-white text-decoration-none">Business</a></p>
+            <p><a href="Contact.html" class="text-white text-decoration-none">Contact</a></p>
+            <p><a href="Over Ons.html" class="text-white text-decoration-none">Over Ons</a></p>
+          </div>
+          <!-- Contact -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">Contact</h5>
+            <p><i class="bi bi-house-door-fill me-2"></i>Avenue Louise 152, Brussel</p>
+            <p><i class="bi bi-envelope-fill me-2"></i>support@safehaven.org</p>
+            <p><i class="bi bi-telephone-fill me-2"></i>+32 405 87 51 33</p>
+          </div>
+          <!-- Social Media -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
+            <h5 class="text-uppercase mb-4 font-weight-bold">Volg ons</h5>
+            <a href="#" class="text-white me-4"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white me-4"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white me-4"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white me-4"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div class="row align-items-center">
+          <div class="col-md-7 col-lg-8">
+            <p class="text-white">© 2025 SafeHaven. Alle rechten voorbehouden.</p>
+          </div>
+          <div class="col-md-5 col-lg-4">
+            <p class="text-white text-md-right">Ontwikkeld door de SafeHaven Team</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+      <!-- Cookie banner HTML -->
+  <div id="cookie-banner" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: #222; color: #fff; padding: 18px 10px; z-index: 9999; text-align: center;">
+    <span>
+      Deze website gebruikt cookies om uw ervaring te verbeteren.
+    </span>
+    <button id="cookie-accept" class="btn btn-primary btn-sm ms-3">Akkoord</button>
+    <button id="cookie-decline" class="btn btn-secondary btn-sm ms-2">Weigeren</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="CookieBanner.js"></script>
+  </div>
+
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
